@@ -64,7 +64,7 @@ public class CatStuff : MonoBehaviour {
 			//}
 		}
         transform.position += move * speed * Time.deltaTime;
-        Camera.main.transform.position += move * speed * Time.deltaTime * 0.5f;
+        Camera.main.transform.position += move * speed * Time.deltaTime;
     }
 
     public void isHealing()
