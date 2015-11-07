@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class CatStuff : MonoBehaviour {
     float speed = 2.0f;
@@ -9,12 +10,17 @@ public class CatStuff : MonoBehaviour {
     public bool underCover;
 	public bool hasJumped;
 	// Use this for initialization
+	public Text kittensLeftText;
+	private int kittensLeft;
 	void Start () {
 
         playerAnimator = GetComponent<Animator>();
         myBody = GetComponent<Rigidbody2D>();
         underCover = false;
 		hasJumped = false;
+
+		kittensLeft = 0;
+		updateKittensLeftText ();
 	}
 	
 	// Update is called once per frame
@@ -78,5 +84,15 @@ public class CatStuff : MonoBehaviour {
 		if (coll.gameObject.tag == "Platform" || coll.gameObject.tag == "Kitten") {
 			hasJumped = false;
 		}
+		if (coll.gameObject.tag == "Kitten") {
+			Destroy (coll.gameObject);
+			kittensLeft += 1;
+			updateKittensLeftText();
+		}
+	}
+
+	void updateKittensLeftText() 
+	{
+		kittensLeftText.text = "Innocent Kittens Alone: " + kittensLeft.ToString (); 
 	}
 }
