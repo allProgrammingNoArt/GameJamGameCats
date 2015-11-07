@@ -7,14 +7,14 @@ public class CatStuff : MonoBehaviour {
     public bool trigger;
     Rigidbody2D myBody;
     public bool underCover;
-
+	public bool hasJumped;
 	// Use this for initialization
 	void Start () {
 
         playerAnimator = GetComponent<Animator>();
         myBody = GetComponent<Rigidbody2D>();
         underCover = false;
-	
+		hasJumped = false;
 	}
 	
 	// Update is called once per frame
@@ -51,10 +51,14 @@ public class CatStuff : MonoBehaviour {
             playerAnimator.SetBool("Stopped", true);
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && hasJumped == false)
         {
-            myBody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
-        }
+			hasJumped = true;
+			myBody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
+			//if(Collision2D.gameObject.name == GameObject.Find("Platform"){
+			//	hasJumped = false;
+			//}
+		}
         transform.position += move * speed * Time.deltaTime;
         
 	}
@@ -68,4 +72,10 @@ public class CatStuff : MonoBehaviour {
     {
         underCover = false;
     }
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+		if (coll.gameObject.tag == "Platform" || coll.gameObject.tag == "Kitten") {
+			hasJumped = false;
+		}
+	}
 }
