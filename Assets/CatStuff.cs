@@ -19,7 +19,15 @@ public class CatStuff : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
+        if (underCover)
+        {
+            Debug.Log("Is healing");
+        }
+        else
+        {
+            Debug.Log("Is not healing");
+        }
         
         var move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         if (Input.GetAxis("Horizontal") < 0)
@@ -50,4 +58,14 @@ public class CatStuff : MonoBehaviour {
         transform.position += move * speed * Time.deltaTime;
         
 	}
+
+    public void isHealing()
+    {
+        underCover = true;
+    }
+
+    public void isNotHealing()
+    {
+        underCover = false;
+    }
 }
