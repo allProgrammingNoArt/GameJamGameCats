@@ -5,11 +5,13 @@ public class CatStuff : MonoBehaviour {
     float speed = 2.0f;
     Animator playerAnimator;
     public bool trigger;
+    Rigidbody2D myBody;
 
 	// Use this for initialization
 	void Start () {
 
         playerAnimator = GetComponent<Animator>();
+        myBody = GetComponent<Rigidbody2D>();
 	
 	}
 	
@@ -36,6 +38,11 @@ public class CatStuff : MonoBehaviour {
         {
 
             playerAnimator.SetBool("Stopped", true);
+        }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            myBody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
         }
         transform.position += move * speed * Time.deltaTime;
         
