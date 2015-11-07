@@ -60,6 +60,7 @@ public class CatStuff : MonoBehaviour {
 			//}
 		}
         transform.position += move * speed * Time.deltaTime;
+        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         
 	}
 
