@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class CatStuff : MonoBehaviour {
-    float speed = 2.0f;
+    float speed = .75f;
     Animator playerAnimator;
     public bool trigger;
     public Rigidbody2D myBody;
@@ -22,18 +22,10 @@ public class CatStuff : MonoBehaviour {
 		kittensLeft = 0;
 		updateKittensLeftText ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-        if (underCover)
-        {
-            Debug.Log("Is healing");
-        }
-        else
-        {
-            Debug.Log("Is not healing");
-        }
-        
+
+    // Update is called once per frame
+    void Update() {
+
         var move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
         if (Input.GetAxis("Horizontal") < 0)
         {
@@ -57,12 +49,12 @@ public class CatStuff : MonoBehaviour {
         }
         if (Input.GetButtonDown("Jump") && hasJumped == false)
         {
-			hasJumped = true;
-			myBody.AddForce(new Vector2(0, 5), ForceMode2D.Impulse);
-			//if(Collision2D.gameObject.name == GameObject.Find("Platform"){
-			//	hasJumped = false;
-			//}
-		}
+            hasJumped = true;
+            myBody.AddForce(new Vector2(0, 3f), ForceMode2D.Impulse);
+            //if(Collision2D.gameObject.name == GameObject.Find("Platform"){
+            //	hasJumped = false;
+            //}
+        }
         transform.position += move * speed * Time.deltaTime;
         Camera.main.transform.position += move * speed * Time.deltaTime;
     }
