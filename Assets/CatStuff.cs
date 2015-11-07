@@ -5,7 +5,7 @@ public class CatStuff : MonoBehaviour {
     float speed = 2.0f;
     Animator playerAnimator;
     public bool trigger;
-    Rigidbody2D myBody;
+    public Rigidbody2D myBody;
     public bool underCover;
 	public bool hasJumped;
 	// Use this for initialization
@@ -19,7 +19,6 @@ public class CatStuff : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
         if (underCover)
         {
             Debug.Log("Is healing");
@@ -50,7 +49,6 @@ public class CatStuff : MonoBehaviour {
         {
             playerAnimator.SetBool("Stopped", true);
         }
-
         if (Input.GetButtonDown("Jump") && hasJumped == false)
         {
 			hasJumped = true;
@@ -60,9 +58,8 @@ public class CatStuff : MonoBehaviour {
 			//}
 		}
         transform.position += move * speed * Time.deltaTime;
-        Camera.main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
-        
-	}
+        Camera.main.transform.position += move * speed * Time.deltaTime * 0.5f;
+    }
 
     public void isHealing()
     {
